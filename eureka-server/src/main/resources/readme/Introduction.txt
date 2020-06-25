@@ -1,0 +1,51 @@
+CAP
+一致性（Consistency）、可用性（Availability）、分区容错性（Partition tolerance）
+Zookeeper : cp 设计 一致性 分区容错性（存在风险服务是否可用问题）
+Eureka: ap 设计 可用性 分区容错性（存在风险数据不一致问题）
+# 服务注册中心
+eureka-server
+# 服务注册
+# key client-1   value :< key 8061、8064、8065、8063 value >
+# 服务续约（心跳机制）
+# 失效服务剔除 （超过90秒没有心跳的服务会被剔除）
+# 自我保护
+
+# 客户端1
+# 获取服务
+# 服务调用
+# 服务下线
+eureka-client-1
+client-1:8061
+
+# 客户端2
+eureka-client-2
+client-2:8062
+# RestTemplate：通过RestTemplate实现了服务之间调用，但是不能负载均衡
+# 实现：利用 RestTemplate 浏览器访问，通过消费者去调生产者
+client-2 --> client-1
+# 示例：http://localhost:8062/getTest
+
+# 客户端3
+eureka-client-3
+client-3:8073
+#Ribbon 客户端负载均衡(nginx 服务端负载均衡)
+# Ribbon 服务清单是先下载的，Nginx 的服务清单是保存再服务器的
+# Ribbon 提供了很多负载均衡机制
+# 1 轮询机制 *
+# 2 随机机制
+# 3 过滤失效，再轮询 *
+# 4 权重
+# 5 先轮询，调用失败，使用重试机制
+# 6 过滤失效服务，再请求并发量最小的服务
+# 实现：利用Ribbon 浏览器访问，通过消费者去调生产者 (看是否轮询调用)
+client-3 --> client-1（端口不同的多个服务,顺序1 3 4 5）
+# 示例：http://localhost:8073/getTest
+
+# 客户端4
+eureka-client-4
+client-4:8074
+
+# 客户端5
+eureka-client-5
+client-5:8075
+
