@@ -22,4 +22,9 @@ public class ProducersController {
     public String test(String name){
         return "我是生产者，端口号："+port+"，内容是："+name;
     }
+
+    @RequestMapping("testMap")
+    public String testMap(String name, String password){
+        return "我是生产者，端口号："+port+"，用户名："+name+"， 密码："+password;
+    }
 }

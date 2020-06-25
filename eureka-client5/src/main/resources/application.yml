@@ -9,5 +9,10 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8060/eureka
-
+# 2.0 以上需要配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 

@@ -14,11 +14,11 @@ eureka-server
 # 获取服务
 # 服务调用
 # 服务下线
-eureka-client-1
+eureka-client-1 （充当生产者）
 client-1:8061
 
 # 客户端2
-eureka-client-2
+eureka-client-2（充当消费者 RestTemplate示例 服务间互相调用）
 client-2:8062
 # RestTemplate：通过RestTemplate实现了服务之间调用，但是不能负载均衡
 # 实现：利用 RestTemplate 浏览器访问，通过消费者去调生产者
@@ -26,7 +26,7 @@ client-2 --> client-1
 # 示例：http://localhost:8062/getTest
 
 # 客户端3
-eureka-client-3
+eureka-client-3（充当消费者 Ribbon示例 负载均衡通用版本服务间互相调用）
 client-3:8073
 #Ribbon 客户端负载均衡(nginx 服务端负载均衡)
 # Ribbon 服务清单是先下载的，Nginx 的服务清单是保存再服务器的
@@ -42,10 +42,34 @@ client-3 --> client-1（端口不同的多个服务,顺序1 3 4 5）
 # 示例：http://localhost:8073/getTest
 
 # 客户端4
-eureka-client-4
+eureka-client-4（充当消费者 Ribbon整合Hystrix示例 容错机制）
+# 服务降级
+# 场景：商品服务 --> 订单服务 -->数据库
+# 1.下订单成功，正常流程
+# 2.延迟一段时间 3秒 成功 （消息队列实现 ：限流，降级分容错，缓存，分级缓存等）
+# 3.相应一句话：系统出错，请稍后再试！
+
 client-4:8074
+# 实现：利用Hystrix 浏览器访问，通过消费者去调生产者 (看接口请求失败是否预置好的异常信息返回)
+client-4 --> client-1（端口不同的多个服务,顺序1 3 4 5）
+# 示例：http://localhost:8074/getTest
+
+# 实现：利用fallbackMethod  浏览器访问，通过消费者去调生产者 (监控断路信息)
+client-4 --> client-1（端口不同的多个服务,顺序1 3 4 5）
+# 示例：http://localhost:8074/actuator/hystrix.stream
+# 示例：http://localhost:8074/hystrix  可视化页面
+
 
 # 客户端5
 eureka-client-5
 client-5:8075
+# 实现：利用Hystrix 浏览器访问，通过消费者去调生产者 (看接口请求失败是否预置好的异常信息返回)
+# 实现字符串拼接的Map形式跨服务调用
+client-5 --> client-1（端口不同的多个服务,顺序1 3 4 5）
+# 示例：http://localhost:8075/getTest
+# 示例：http://localhost:8075/getTestMap （http://client-1/testMap?name={name}&&password={password}-->真正调用
+   http://localhost:8064/testMap?name=zhangsan&&password=123456）
+
+# 客户端 6
+eureka-fegin
 
