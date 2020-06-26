@@ -1,13 +1,10 @@
-package com.lzc;
+package com.lzc.eurekafegin;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class EurekaFeginApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
 
 }

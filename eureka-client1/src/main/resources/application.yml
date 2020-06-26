@@ -1,14 +1,11 @@
 server:
-#  端口：8061、8063、8064、8065 为 eureka-client1 并行端口
 #  port: 8061
-#  port: 8063
-  port: 8064
+  port: 8063
+#  port: 8064
 #  port: 8065
-#指定当前服务的名称
 spring:
   application:
     name: client-1
-#  指定 服务注册中心的地址
 eureka:
   client:
     serviceUrl:

@@ -72,4 +72,11 @@ client-5 --> client-1（端口不同的多个服务,顺序1 3 4 5）
 
 # 客户端 6
 eureka-fegin
-
+client-5:8076
+# 实现：利用fegin 浏览器访问，通过消费者去调生产者 (看接口请求是否成功)
+# 1.传字符串 ： http://localhost:8076/getTest
+# 2.传实体：（对象的接收）http://localhost:8076/getTestAdmin
+#   1. @RequestBody (必须加)
+#   2. post 请求
+# 3.非必要封装对象可以使用json 传通过Map封装进行数据传递 （同client-5）
+#
