@@ -80,3 +80,25 @@ client-5:8076
 #   2. post 请求
 # 3.非必要封装对象可以使用json 传通过Map封装进行数据传递 （同client-5）
 #
+#  客户端 7
+# bootstrap.properties 可以认为在创建对象之前执行，通过他来加载application 配置文件
+#
+#
+eureka-config
+# eureka-config：8888
+# 实现：指定了云端的地址 例如：https://gitee.com/liuzhichao1994/eureka-config.git
+#
+#  客户端 8
+config-client
+# eureka-config：8806
+# 实现：从云端获取到的地址 例如：https://gitee.com/liuzhichao1994/eureka-config.git
+
+# 多配置文件
+#
+#
+#
+#
+#
+#
+#
+#
