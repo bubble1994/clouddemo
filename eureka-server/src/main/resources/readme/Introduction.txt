@@ -94,10 +94,10 @@ config-client
 # 实现：从云端获取到的地址 例如：https://gitee.com/liuzhichao1994/eureka-config.git
 
 # 多配置文件
+# dev 、test 、verify、pro
 #
-#
-#
-#
+# 客户端 9
+# eureka-zuul
 #
 #
 #
