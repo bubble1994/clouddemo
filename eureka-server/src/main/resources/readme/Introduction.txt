@@ -98,7 +98,8 @@ config-client
 #
 # 客户端 9
 # eureka-zuul
-#
+# 路由     http://localhost:8600/api-a/test?name=oooooooooooooooooooo
+# 网关转发：http://localhost:8600/api-a/test?name=oooooooooooooooooooo&&accessToken=12333
 #
 #
 #
